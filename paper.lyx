@@ -1,0 +1,3146 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\begin_modules
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement h
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine natbib
+\cite_engine_type authoryear
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 2
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+date{}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Title
+MATH 174 Project: 4D Helix
+\end_layout
+
+\begin_layout Author
+Oras Phongpanangam
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\R}{\mathbb{R}}
+{\mathbb{R}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Abstract
+I studied the 4-dimensional counterpart to the 3-dimensional curves, and
+ applied the methodology specifically to 4D helix, the special curve where
+ the curvature and torsion are constants.
+ In 3D, these constraints result in a circular helix, spiraling into infinity.
+ However, in 4D, it turns out the properties of a curve with constant curvature,
+ torsion, and 
+\begin_inset Quotes eld
+\end_inset
+
+bitorsion
+\begin_inset Quotes erd
+\end_inset
+
+, the new quantity arising in the fourth dimension, are much different to
+ the 3D counterpart.
+ In fact, it might have more in common with the 2D circle, and I hypothesize
+ that the patterns continue on in an alternating sequence at higher and
+ higher dimensions.
+ 
+\end_layout
+
+\begin_layout Abstract
+I worked out the generalization of the Frenet-Serret formulas, or just Frenet
+ formulas for short, to the four-dimensional 
+\begin_inset Formula $\R^{4}$
+\end_inset
+
+.
+ Using the formulas, I was able to calculate the position of a curve as
+ parametrized by arclength.
+ I then studied the 4D helix using several projections and visualization
+ techniques, revealing its properties.
+\end_layout
+
+\begin_layout Section
+Generalized Frenet Apparatus
+\end_layout
+
+\begin_layout Standard
+I find dimensional analogy to be one of the most useful tools in investigating
+ higher dimensions.
+ Imagine a plane curve in our three-dimensional space.
+ We see that we have one vector, the binormal, staying constant and normal
+ to the plane the curve is embedded in.
+ Once we deconfine the curve from the plane, the binormal vector comes alive,
+ and varies along with the tangent and the normal vector.
+ 
+\end_layout
+
+\begin_layout Standard
+In the four dimensional case, I suspect that there will be four principle
+ vectors forming an orthonormal frame in 
+\begin_inset Formula $\R^{4}$
+\end_inset
+
+.
+ When we have a curve embedded in a three-dimensional subspace, the fourth
+ vector should be held consant, and normal to the entire subspace.
+ The torsion quantity characterizes how the curve fails to lie in a plane,
+ so perhaps there will be a new quatity that characterizes how a curve fails
+ to fit in a hyperplane.
+ 
+\end_layout
+
+\begin_layout Standard
+In trying to generalize the Frenet apparatus to the fourth dimension, the
+ first challenge I faced was the binormal vector, 
+\begin_inset Formula $B$
+\end_inset
+
+.
+ In the three dimensional case, we define it as 
+\series bold
+
+\begin_inset Formula $B=T\times N$
+\end_inset
+
+
+\series default
+.
+ However, cross products are only defined in 
+\begin_inset Formula $\R^{3}$
+\end_inset
+
+, so this definition will not generalize to 
+\begin_inset Formula $\R^{4}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+By inspecting the Frenet formulas:
+\begin_inset Formula 
+\[
+\begin{array}{cccc}
+T'= &  & \kappa N\\
+N'= & -\kappa T &  & +\tau B\\
+B'= &  & -\tau N
+\end{array}
+\]
+
+\end_inset
+
+I decide to try defining 
+\series bold
+
+\begin_inset Formula $B$
+\end_inset
+
+
+\series default
+ by using the second row:
+\begin_inset Formula 
+\begin{align*}
+N' & =-\kappa T+\tau B\\
+\Rightarrow B & =\frac{1}{\tau}N'+\frac{\kappa}{\tau}T.
+\end{align*}
+
+\end_inset
+
+assuming 
+\begin_inset Formula $\tau\ne0$
+\end_inset
+
+.
+ We just need 
+\begin_inset Formula $B$
+\end_inset
+
+ to be a unit vector, so redefine the quantity 
+\begin_inset Formula $\tau$
+\end_inset
+
+ as
+\begin_inset Formula 
+\begin{align*}
+\tau & =|N'+\kappa T|
+\end{align*}
+
+\end_inset
+
+Now, we can redefine 
+\begin_inset Formula $B$
+\end_inset
+
+ as
+\begin_inset Formula 
+\[
+B=\frac{1}{\tau}(N'+\kappa T)
+\]
+
+\end_inset
+
+This way, 
+\begin_inset Formula $B$
+\end_inset
+
+ is defined only in terms of 
+\begin_inset Formula $T$
+\end_inset
+
+ and 
+\begin_inset Formula $N$
+\end_inset
+
+ using differentiation and dot products, all of which are generalizable
+ to 
+\begin_inset Formula $\R^{4}$
+\end_inset
+
+.
+ This definition will also preserve the third row formula:
+\begin_inset Formula 
+\begin{align*}
+(B\cdot T)' & =B'\cdot T+T'\cdot B\\
+ & =B'\cdot T+\kappa N\cdot(\frac{1}{\tau}N'+\frac{\kappa}{\tau}T)\\
+ & =B'\cdot T+0=0
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\Rightarrow B'\cdot T=0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+(B\cdot N)' & =B'\cdot N+N'\cdot B\\
+ & =B'\cdot N+(\frac{1}{\tau}N'+\frac{\kappa}{\tau}T)\cdot N'\\
+ & =B'\cdot N+\frac{1}{\tau}|N'|^{2}+\frac{\kappa}{\tau}T\cdot N'\\
+ & =B'\cdot N+\frac{1}{\tau}(\kappa^{2}+\tau^{2})-\frac{\kappa^{2}}{\tau}\\
+ & =B'\cdot N+\tau=0
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\Rightarrow B'\cdot N=-\tau
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+(B\cdot B)' & =2B'\cdot B=0
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\Rightarrow B'\cdot B=0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We can then define the fourth vector of the orthonormal basis as the unit
+ vector normal to 
+\begin_inset Formula $T,N,$
+\end_inset
+
+ and 
+\begin_inset Formula $B$
+\end_inset
+
+ at once.
+ For now, I choose to call this vector 
+\begin_inset Formula $Q$
+\end_inset
+
+ for 
+\begin_inset Quotes eld
+\end_inset
+
+Quad
+\begin_inset Quotes erd
+\end_inset
+
+, or something that has to do with number four.
+ So we have
+\begin_inset Formula 
+\begin{align*}
+Q\cdot T & =0\\
+Q\cdot N & =0\\
+Q\cdot B & =0\\
+Q\cdot Q & =1
+\end{align*}
+
+\end_inset
+
+We can now then investigate 
+\begin_inset Formula $Q'$
+\end_inset
+
+, the fourth row of the Frenet formulas.
+\end_layout
+
+\begin_layout Subsection
+The Fourth Row
+\end_layout
+
+\begin_layout Standard
+Using the usual trick of differentiating a dot product can take us far.
+ First, note that for any orthogonal, unit vectors 
+\begin_inset Formula $A$
+\end_inset
+
+ and 
+\begin_inset Formula $B$
+\end_inset
+
+, we have 
+\begin_inset Formula 
+\begin{align*}
+A\cdot B & =0\\
+(A\cdot B)'=A'\cdot B+A\cdot B' & =0\\
+A'\cdot B & =-A\cdot B'
+\end{align*}
+
+\end_inset
+
+and also
+\begin_inset Formula 
+\begin{align*}
+A\cdot A & =1\\
+(A\cdot A)'=2A'\cdot A & =0\\
+A'\cdot A & =0
+\end{align*}
+
+\end_inset
+
+These generalize the manipulation of vector 
+\begin_inset Formula $B$
+\end_inset
+
+ above to any pair of any vectors from the apparatus.
+ This means that in the Frenet formula table of any dimensionality, the
+ antisymmetric structure will be preserved always.
+ We now know that
+\begin_inset Formula 
+\[
+Q'\cdot Q=0.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+By definition, 
+\begin_inset Formula $T'=\kappa N$
+\end_inset
+
+, so 
+\begin_inset Formula $T'\cdot Q=0$
+\end_inset
+
+.
+ By antisymmetry, we also have 
+\begin_inset Formula 
+\[
+Q'\cdot T=0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Now, consider 
+\begin_inset Formula $Q\cdot B$
+\end_inset
+
+:
+\begin_inset Formula 
+\begin{align*}
+Q\cdot B & =0\\
+ & =Q\cdot\left(\frac{1}{\tau}N'+\frac{\kappa}{\tau}T\right)\\
+ & =\frac{1}{\tau}Q\cdot N'\\
+\Rightarrow Q\cdot N' & =0
+\end{align*}
+
+\end_inset
+
+By antisymmetry,
+\begin_inset Formula 
+\[
+Q'\cdot N=0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Therefore, 
+\begin_inset Formula $Q'$
+\end_inset
+
+ is only pointing in the 
+\begin_inset Formula $B$
+\end_inset
+
+ direction.
+ Define
+\begin_inset Formula 
+\[
+Q'=-\xi B
+\]
+
+\end_inset
+
+because I like the letter 
+\begin_inset Formula $\xi$
+\end_inset
+
+, and the sign gives us a nice pattern.
+ As per professor Farris's suggestion, I decided to call 
+\begin_inset Formula $\xi$
+\end_inset
+
+ the 
+\begin_inset Quotes eld
+\end_inset
+
+bitorsion
+\begin_inset Quotes erd
+\end_inset
+
+ of the curve.
+ We now have enough information to fill in the Frenet formulas table for
+ 
+\begin_inset Formula $\R^{4}$
+\end_inset
+
+:
+\begin_inset Formula 
+\[
+\begin{array}{ccccc}
+T'= &  & \kappa N\\
+N'= & -\kappa T &  & +\tau B\\
+B'= &  & -\tau N &  & +\xi Q\\
+Q'= &  &  & -\xi B
+\end{array}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Notes on the direction of 
+\begin_inset Formula $Q$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In 3D, if we define the binormal vector 
+\begin_inset Formula $B$
+\end_inset
+
+ as the unit vector normal to both 
+\begin_inset Formula $T$
+\end_inset
+
+ and 
+\begin_inset Formula $N$
+\end_inset
+
+, there are two possible vectors that fit the description, pointing the
+ opposite direction to each other.
+ To keep the definition consistent, we define 
+\begin_inset Formula $B$
+\end_inset
+
+ based on the right hand rule of cross product, namely, that 
+\begin_inset Formula $B=T\times N$
+\end_inset
+
+.
+ This way, the formulas work out as intended.
+\end_layout
+
+\begin_layout Standard
+In 4D, we don't have the luxury of the cross product, and so the orientation
+ of vectors become more difficult to discern.
+ The right hand rule won't make much sense in 4D, unless we have some kind
+ of an alian hand to work with.
+ With our definition of 
+\begin_inset Formula $Q$
+\end_inset
+
+ above, we face the same problem in defining the direction of 
+\begin_inset Formula $Q$
+\end_inset
+
+ as in the 3D case.
+ In this project, I choose to solve this problem by defining 
+\begin_inset Formula $\xi$
+\end_inset
+
+ to be a positive quantity.
+ This way, I define 
+\begin_inset Formula $Q$
+\end_inset
+
+ to be the component of the vector 
+\begin_inset Formula $B'$
+\end_inset
+
+ not in the direction of 
+\begin_inset Formula $N$
+\end_inset
+
+, namely
+\begin_inset Formula 
+\[
+Q=\frac{1}{\xi}(B'+\tau N)
+\]
+
+\end_inset
+
+where I define 
+\begin_inset Formula $\xi=|B'+\tau N|$
+\end_inset
+
+, which I decide to call.
+ With this formulation, we don't have the theory of a signed bitorsion,
+ but that will not be necessary for my analysis as done in this paper.
+ If one would like to use a signed bitorsion, it is possible to define 
+\begin_inset Formula $Q$
+\end_inset
+
+ based on the orientation of 
+\begin_inset Formula $T,N,$
+\end_inset
+
+ and 
+\begin_inset Formula $B$
+\end_inset
+
+ using a higher analogy of the cross product, but I will not explore it
+ in this paper.
+\end_layout
+
+\begin_layout Subsection
+Properties of Bitorsion 
+\begin_inset Formula $\xi$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For space curves, 
+\begin_inset Formula $\tau$
+\end_inset
+
+ can be thought of as a measure for how much the curve fails to fit on a
+ plane.
+ As it turns out, 
+\begin_inset Formula $\xi$
+\end_inset
+
+ can be thought of as an analogy to that, telling us how much a curve fails
+ to be a space curve.
+ If 
+\begin_inset Formula $\xi$
+\end_inset
+
+ is identically zero, and 
+\begin_inset Formula $\tau>0$
+\end_inset
+
+ and 
+\begin_inset Formula $\kappa>0$
+\end_inset
+
+, then the curve must be a space curve.
+ 
+\end_layout
+
+\begin_layout Standard
+The proof is similar to the 3D case.
+ Assume that for a unit speed curve 
+\begin_inset Formula $\alpha$
+\end_inset
+
+, 
+\begin_inset Formula $\kappa>0,\tau>0,\xi=0$
+\end_inset
+
+.
+ Then, 
+\begin_inset Formula $Q'=0$
+\end_inset
+
+, thus 
+\begin_inset Formula $Q$
+\end_inset
+
+ is a constant vector.
+ Examine 
+\begin_inset Formula $(\alpha(s)-\alpha(0))\cdot Q$
+\end_inset
+
+.
+ We have
+\begin_inset Formula 
+\begin{align*}
+[(\alpha(s)-\alpha(0))\cdot Q]' & =\alpha'(s)\cdot Q\\
+ & =T\cdot Q\\
+ & =0
+\end{align*}
+
+\end_inset
+
+Thus, 
+\begin_inset Formula $(\alpha(s)-\alpha(0))\cdot Q$
+\end_inset
+
+ is a constant.
+ We can find its value by examining the case when 
+\begin_inset Formula $s=0$
+\end_inset
+
+, where clearly 
+\begin_inset Formula $((\alpha(s)-\alpha(0))\cdot Q=0\cdot Q=0$
+\end_inset
+
+.
+ Therefore, 
+\begin_inset Formula $\alpha(s)-\alpha(0)$
+\end_inset
+
+ is always perpendicular to 
+\begin_inset Formula $Q$
+\end_inset
+
+.
+ This means that 
+\begin_inset Formula $Q$
+\end_inset
+
+ is perpendicular to the 3D subspace 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ lives in, and thus 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ is a space curve.
+ 
+\end_layout
+
+\begin_layout Standard
+Note that this is only true when 
+\begin_inset Formula $\kappa>0$
+\end_inset
+
+ and 
+\begin_inset Formula $\tau>0$
+\end_inset
+
+ at all positions.
+ We have seen some examples of space curves with 
+\begin_inset Formula $\tau=0$
+\end_inset
+
+ that fail to be a plane curve because there are points where 
+\begin_inset Formula $\kappa$
+\end_inset
+
+ vanishes.
+ This should analogously be true for 4D curves as well.
+ 
+\end_layout
+
+\begin_layout Section
+Plotting the 4D Helix
+\end_layout
+
+\begin_layout Standard
+With the Frenet formulas derived, it is possible to solve the differential
+ equations to obtain the positions 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ at any given arclength.
+ I was particularly interested in the special curve where 
+\begin_inset Formula $\kappa=\tau=\xi=1$
+\end_inset
+
+.
+ It is of course possible to derive the curve with 
+\begin_inset Formula $\kappa,\tau,$
+\end_inset
+
+ and 
+\begin_inset Formula $\xi$
+\end_inset
+
+ as any function of arclength 
+\begin_inset Formula $s$
+\end_inset
+
+.
+ The initial conditions I used were
+\begin_inset Formula 
+\begin{align*}
+\alpha(0) & =(0,0,0,0)\\
+T(0) & =(1,0,0,0)\\
+N(0) & =(0,1,0,0)\\
+B(0) & =(0,0,1,0)\\
+Q(0) & =(0,0,0,1)
+\end{align*}
+
+\end_inset
+
+Using SageMath's numerical integration module with the differential equations
+ from the generalized Frenet formulas, the approximation for 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ is found.
+ I then used orthogonal projection into four directions, x, y, z, and w,
+ to visualize the curve in 3D.
+ I also tried stereographic projection, but the results were largely the
+ same so I did not include them here.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:alpha_4d"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows the four projections of the curve.
+\end_layout
+
+\begin_layout Standard
+The most distinctive feature of the curve has to be the fact that it closes
+ around itself into a torus-like structure in all directions.
+ This means that unlike the 3D case, where the helix goes off to infinity,
+ constant curvature, torsion, and bitorsion is enough to confine the 4D
+ curve in a bounded space.
+ This is analogous to the 2D case, where a constant curvature yields a circle,
+ which also loops into itself.
+ My question was: what is the shape that the curve is confined to? My project
+ aims to answer that question, and I successfully did so.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename pics/Screenshot - 5_31_2019 , 11_08_40 PM.png
+	lyxscale 50
+	width 45col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $xyz$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename pics/Screenshot - 5_31_2019 , 11_09_36 PM.png
+	lyxscale 50
+	width 45col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $xyw$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename pics/Screenshot - 5_31_2019 , 11_10_54 PM.png
+	lyxscale 50
+	width 45col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $xzw$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename pics/Screenshot - 5_31_2019 , 11_11_04 PM.png
+	lyxscale 50
+	width 45col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $yzw$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Four orthogonal projections of 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ using coordinates selection
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:alpha_4d"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Involute Curve
+\end_layout
+
+\begin_layout Standard
+Using the usual formula
+\begin_inset Formula 
+\[
+E(s)=\alpha(s)-sT
+\]
+
+\end_inset
+
+the involute curve can be generalized easily to 4D.
+ An orthogonal projection is shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:involute_4d"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ In 3D, the evolute of a helix would be a plane curve.
+ Sadly, this is not true in 4D.
+ Using the Frenet formulas, 
+\begin_inset Formula $\xi$
+\end_inset
+
+ of the evolute is found to fluctuate between 0.02 and 7, far from being
+ identically 0.
+ It doesn't seem like the evolute is particularly revealing of the curve.
+ Though it is worth noting that numerical derivative is sensitive to the
+ error of the values, especially for an oscillatory function like 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ we have, so this may not be accurate.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename pics/Screenshot - 5_31_2019 , 11_15_33 PM.png
+	lyxscale 50
+	width 7cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+The 
+\begin_inset Formula $xyz$
+\end_inset
+
+ orthogonal projection of the involute curve
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:involute_4d"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Evolute Curve
+\end_layout
+
+\begin_layout Standard
+Similarly, the formula
+\begin_inset Formula 
+\[
+I(s)=\alpha(s)+\frac{1}{\kappa}N(s)
+\]
+
+\end_inset
+
+allows us to generalize the evolute curve to 4D.
+ The four orthogonal projections are shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:evolute_4d"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ Similarly to the involute, the value of 
+\begin_inset Formula $\xi$
+\end_inset
+
+ is found to fluctuate between 1.68 and 5.36, and is not particularly revealing.
+ 
+\end_layout
+
+\begin_layout Standard
+As it turned out, for this project, I found many numerical methods used
+ in data science to be extremely helpful in visualizing this 4D object,
+ even more so than the traditional geometrical techniques.
+ The same remark about error above applies here.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename pics/Screenshot - 5_31_2019 , 11_14_38 PM.png
+	lyxscale 50
+	width 45col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $xyz$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename pics/Screenshot - 5_31_2019 , 11_14_39 PM.png
+	lyxscale 50
+	width 45col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $xyw$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename pics/Screenshot - 5_31_2019 , 11_14_40 PM.png
+	lyxscale 50
+	width 45col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $xzw$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename pics/Screenshot - 5_31_2019 , 11_14_41 PM.png
+	lyxscale 50
+	width 45col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $yzw$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Four orthogonal projections of the evolute curve (red) inside 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ (blue)
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:evolute_4d"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Numerical Analyses
+\end_layout
+
+\begin_layout Standard
+Using SageMath, which is based on Python, I instinctively reached for many
+ traditional techniques used in data science, most of which are very readily
+ available as Python libraries.
+ I find these methods very powerful in visualizing highly multidimensional
+ data.
+ While projections can give us a clue to the actual the shape of the object,
+ we inevitably lose the information of a dimension everytime we project
+ the object down to a lower dimension.
+ Graphing, on the other hand, can visualize every dimension and how they
+ interplay with each other at once.
+ While we lose the visual aspect of the object, we are able to comprehend
+ all dimensions at the same time, powerfully complementing the technique
+ of projection.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset Formula $\alpha$
+\end_inset
+
+ Plots
+\end_layout
+
+\begin_layout Standard
+A very simple thing to do is to plot out the values of 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ at each position, with one line corresponding to one dimension.
+ As Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:alpha_plot"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows, the values in all directions are clearly oscilatory in nature, confirmin
+g my suspicion that the 4D helix loops back onto itself.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename pics/alpha_plot.png
+	lyxscale 50
+	width 7cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Values of each direction of 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ as varying with 
+\begin_inset Formula $s$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:alpha_plot"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Center of Mass Plots
+\end_layout
+
+\begin_layout Standard
+Center of mass of the curve shows where the curve is centered at.
+ The center of mass of a curve as 
+\begin_inset Formula $s$
+\end_inset
+
+ increases is given as
+\begin_inset Formula 
+\[
+cm=\frac{\int_{0}^{s}\alpha(s')ds'}{s}
+\]
+
+\end_inset
+
+For 3D helix, the center of mass will move toward infinity as the curve
+ itself extends.
+ The plot of center of mass of the 4D helix is shows in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:cm_plot"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, the values calculated numerically.
+ Clearly, the position of the center of mass approaches a certain point,
+ approximately 
+\begin_inset Formula $(0,1,0,1)$
+\end_inset
+
+, showing that the curve is indeed bounded, and centered at 
+\begin_inset Formula $(0,1,0,1)$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename pics/cm_plot.png
+	lyxscale 50
+	width 7cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+The center of mass of 
+\begin_inset Formula $\alpha$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:cm_plot"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Principal Component Analysis (PCA)
+\end_layout
+
+\begin_layout Standard
+Though having its root in statistics, principal component analysis or PCA
+ is a very powerful technique widely used in data science and machine learning,
+ particularly in data visualization.
+ PCA is defined as an orthogonal transformation of a vector space based
+ on a set of points such that the variance of the points as measured along
+ a basis vector is maximized.
+ The result is usally the more 
+\begin_inset Quotes eld
+\end_inset
+
+correct
+\begin_inset Quotes erd
+\end_inset
+
+ projection of the data, showing more vividly the underlying characteristic
+ of a set of data, and making it possible to discard dimensions with less
+ information.
+ 
+\end_layout
+
+\begin_layout Standard
+Let the set of 
+\begin_inset Formula $n$
+\end_inset
+
+ points in an 
+\begin_inset Formula $m$
+\end_inset
+
+-dimensional space be represented by an 
+\begin_inset Formula $n\times m$
+\end_inset
+
+ matrix 
+\begin_inset Formula $X$
+\end_inset
+
+, with each row representing a point.
+ PCA is equivalent to the eigen-decomposition of the covariance matrix of
+ 
+\begin_inset Formula $X$
+\end_inset
+
+, namely
+\begin_inset Formula 
+\[
+X^{T}X=M\Lambda M^{T}
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\Lambda$
+\end_inset
+
+ is the diagonal matrix with eigenvalues in each diagonal cell, and 
+\begin_inset Formula $M$
+\end_inset
+
+ the eigenmatrix representing the orthogonal transformation, with an eigenvector
+ as each column.
+ 
+\end_layout
+
+\begin_layout Standard
+Call the values of 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ in the PCA basis 
+\begin_inset Formula $\alpha_{pca}=\alpha M$
+\end_inset
+
+.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:3d_helix"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows the 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ and 
+\begin_inset Formula $\alpha_{pca}$
+\end_inset
+
+ space curve of a 3D helix when solved from the differential equation using
+ the initial condition 
+\begin_inset Formula $\alpha(0)=(0,0,0),T(0)=(1,0,0),N(0)=(0,1,0),B(0)=(0,0,1)$
+\end_inset
+
+.
+ Note that 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ is moving in the diagonal direction, due to the unsuitable initial conditions,
+ but 
+\begin_inset Formula $\alpha_{pca}$
+\end_inset
+
+ moves along the 
+\begin_inset Formula $x$
+\end_inset
+
+-axis nicely.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:alpha_3d_plots"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows the values of 3D 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ and 
+\begin_inset Formula $\alpha_{pca}$
+\end_inset
+
+ as a line plot.
+ Notice that in 
+\begin_inset Formula $\alpha_{pca}$
+\end_inset
+
+, the 
+\begin_inset Formula $x$
+\end_inset
+
+ direction increases linearly, showing clearly how the helix is extending
+ in only 1 direction.
+\end_layout
+
+\begin_layout Standard
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:alpha_4d_pca"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows the plot of the 4D helix 
+\begin_inset Formula $\alpha_{pca}$
+\end_inset
+
+.
+ Note that the curves look much more sinusoidal than the 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ plot, hinting at the nicer nature of this basis.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename pics/Screenshot - 5_31_2019 , 11_08_01 PM.png
+	lyxscale 50
+	width 7cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $\alpha$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename pics/Screenshot - 5_31_2019 , 11_15_54 PM.png
+	lyxscale 50
+	width 7cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $\alpha_{pca}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+3D helix before and after PCA treatment
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:3d_helix"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename pics/alpha_3d_plot.png
+	lyxscale 50
+	width 7cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $\alpha$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename pics/alpha_3d_plot_pca.png
+	lyxscale 50
+	width 7cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $\alpha_{pca}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Values of 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ and 
+\begin_inset Formula $\alpha_{pca}$
+\end_inset
+
+ of 3D helix
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:alpha_3d_plots"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename pics/alpha_pca_plot.png
+	lyxscale 50
+	width 7cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Values of 
+\begin_inset Formula $\alpha_{pca}$
+\end_inset
+
+ of 4D helix
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:alpha_4d_pca"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Putting Them All Together
+\end_layout
+
+\begin_layout Standard
+Numerical results told us a few things.
+ First, the 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ plot confirms that the curve is bounded and oscillatory.
+ Second, the center of mass plot shows that the curve is off-center.
+ To recenter the curve, I changed the initial condition of 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ to 
+\begin_inset Formula $\alpha(0)=(0,-1,0,-1)$
+\end_inset
+
+, simply to offset the center back to zero.
+ With a centered curve, hopefully PCA will perform better as well.
+ 
+\end_layout
+
+\begin_layout Standard
+The results were of great satisfaction.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:alpha_and_cm_centered"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows the 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ values and the center of mass of the centered curve.
+ The curve is centered at much closer to 0 than before, as the range of
+ the oscillations shows.
+ But perhaps the most satisfying was the plot of 
+\begin_inset Formula $\alpha_{pca}$
+\end_inset
+
+, shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:alpha_4d_pca_centered"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ The graphs become purely sinusoidal, varying at shared 2 magnitudes.
+ In fact, as Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:sine_cosine"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows, 
+\begin_inset Formula $xy$
+\end_inset
+
+ and 
+\begin_inset Formula $zw$
+\end_inset
+
+ form sine and cosine pairs of the same frequency and magnitude, each tracing
+ out a circle.
+ This is where I recognize the curve as being on a 4D flat torus, given
+ by 
+\begin_inset Formula 
+\[
+x(u,v)=(r_{1}\cos(u),r_{1}\sin(u),r_{2}\cos(v),r_{2}\sin(v))
+\]
+
+\end_inset
+
+From the numerical result, this torus has 
+\begin_inset Formula $r_{1}=0.327$
+\end_inset
+
+ and 
+\begin_inset Formula $r_{2}=1.377$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename pics/alpha_plot_centered.png
+	lyxscale 50
+	width 7cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $\alpha$
+\end_inset
+
+ plot
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename pics/cm_plot_centered.png
+	lyxscale 50
+	width 7cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+center of mass plot
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Plots of the centered 
+\begin_inset Formula $\alpha$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:alpha_and_cm_centered"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename pics/alpha_pca_plot_centered.png
+	lyxscale 50
+	width 7cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $\alpha_{pca}$
+\end_inset
+
+ of the centered 4D helix
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:alpha_4d_pca_centered"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename pics/helix_4d_pca_01.png
+	lyxscale 50
+	width 45col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $xy$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename pics/helix_4d_pca_23.png
+	lyxscale 50
+	width 45col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $zw$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+2D projections of 
+\begin_inset Formula $\alpha$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:sine_cosine"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:alpha_4d_pca_centered_projections"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows the four orthogonal projections of 
+\begin_inset Formula $\alpha_{pca}$
+\end_inset
+
+, and Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:flat_torus_projections"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows the four orthogonal projections of the flat torus given by 
+\begin_inset Formula $x(u,v)=(0.327\cos(u),0.327\sin(u),1.377\cos(v),1.377\sin(v))$
+\end_inset
+
+.
+ Notice that they look exactly the same.
+ Thus it becomes very clear that 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ indeed lies on a flat torus.
+ It is quite interesting how a 4D curve, with four directions to vary in,
+ is confined to only a 2-manifold in 
+\begin_inset Formula $\R^{4}$
+\end_inset
+
+.
+ So while 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ with such simple 
+\begin_inset Formula $\kappa,\tau,$
+\end_inset
+
+ and 
+\begin_inset Formula $\xi$
+\end_inset
+
+ looked chaotic at first, it is in fact greatly uniform.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename pics/Screenshot - 5_31_2019 , 11_11_57 PM.png
+	lyxscale 50
+	height 45col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $xyz$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename pics/Screenshot - 5_31_2019 , 11_12_18 PM.png
+	lyxscale 50
+	height 45col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $xyw$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename pics/Screenshot - 5_31_2019 , 11_12_38 PM.png
+	lyxscale 50
+	width 45col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $xzw$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename pics/Screenshot - 5_31_2019 , 11_13_07 PM.png
+	lyxscale 50
+	width 45col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $yzw$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Four orthogonal projections of centered 
+\begin_inset Formula $\alpha_{pca}$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:alpha_4d_pca_centered_projections"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename pics/Screenshot - 5_31_2019 , 11_06_17 PM.png
+	lyxscale 50
+	height 45col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $xyz$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename pics/Screenshot - 5_31_2019 , 11_06_57 PM.png
+	lyxscale 50
+	height 45col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $xyw$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename pics/Screenshot - 5_31_2019 , 11_07_17 PM.png
+	lyxscale 50
+	width 45col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $xzw$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename pics/Screenshot - 5_31_2019 , 11_07_32 PM.png
+	lyxscale 50
+	width 45col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $yzw$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Four orthogonal projections of the flat torus
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:flat_torus_projections"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Miscellaneous
+\end_layout
+
+\begin_layout Subsection
+Aside on Higher Dimensions
+\end_layout
+
+\begin_layout Standard
+Considering the generalized 4D Frenet formulas, it becomes quite clear that
+ the formulas can be extended easily to any number of dimensions.
+ Operating on that assumption and continuing the antisymmetric pattern downward,
+ I derived the 5D Frenet formulas and plotted out a 5D helix with all the
+ differential invariants equal to one.
+ The result, shown as 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ and 
+\begin_inset Formula $\alpha_{pca}$
+\end_inset
+
+ plots in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:5d_alpha"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, shows that the curve once again extends to infinity in one direction,
+ much like the 3D helix.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:6d_alpha"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows the 6D version, showing the oscillatory nature again.
+ Remember that the 2D helix, which is a circle, is also oscillatory and
+ bounded.
+ It is then my hypothesis that this pattern continues alternatedly as the
+ number of dimensions increases.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename pics/alpha_5d_plot.png
+	lyxscale 50
+	width 7cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $\alpha$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename pics/alpha_5d_plot_pca.png
+	lyxscale 50
+	width 7cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $\alpha_{pca}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+5D helix before and after PCA treatment
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:5d_alpha"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename pics/alpha_6d_plot.png
+	lyxscale 50
+	width 7cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $\alpha$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename pics/alpha_6d_pca.png
+	lyxscale 50
+	width 7cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $\alpha_{pca}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+6D helix before and after PCA treatment
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:6d_alpha"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Acknowledgement of the Lack of Mathematical Rigor
+\end_layout
+
+\begin_layout Standard
+I relied heavily on numerical methods in this project, so this might not
+ seem very satisfactory to a pure mathematician.
+ Particularly, the fact that the 4D helix lies on a flat torus is realized
+ through a series of plots and graphs, not through symbolic manipulation.
+ It is also possible that the numerical results contain hidden errors from
+ the lack of infinite precision, especially when calculating the differential
+ invariants.
+ However, since we are dealing with a smooth, well-behaved curve, the plots
+ of 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ should be very accurate, and they show without a doubt that the flat torus
+ is the underlying shape of 
+\begin_inset Formula $\alpha$
+\end_inset
+
+.
+ It is also worth noting that symbolic computation of the 4D helix was extremely
+ chaotic and did not reveal much about the curve, and was computationally
+ intensive.
+ Rather, the numerical methods used here ran on my tiny laptop without a
+ hiccup, and can be applied to study much more complex curves.
+ It is my belief that though not exactly precise, these techniques have
+ their place in studying geometry.
+\end_layout
+
+\begin_layout Subsection
+Possible Further Works
+\end_layout
+
+\begin_layout Itemize
+Though already shown through plots, it will be much more satisfying if I
+ can work out a proof that 4D helix indeed lies on a flat torus with mathematica
+l rigor.
+\end_layout
+
+\begin_layout Itemize
+This project only studied the curve with 
+\begin_inset Formula $\kappa=\tau=\xi=1$
+\end_inset
+
+.
+ There are infinite possibilities these values can have, and there are many
+ other curves to study.
+\end_layout
+
+\begin_layout Itemize
+The values of 
+\begin_inset Formula $\kappa,\tau,$
+\end_inset
+
+ and 
+\begin_inset Formula $\xi$
+\end_inset
+
+ should dictate the shape of the flat torus the 4D helix lies on, characterized
+ by the 2 radii.
+ It should be possible to work out how to determine exactly the shape of
+ such a torus.
+\end_layout
+
+\begin_layout Itemize
+Plots shown above gave us a glimpse at the beautiful pattern of alternating
+ behavior between divergence and convergence of the helices at higher dimensions.
+ It will be exciting to prove that this is indeed true, and why so.
+\end_layout
+
+\begin_layout Section
+Conclusion
+\end_layout
+
+\begin_layout Standard
+I find numerical methods and data visualization techniques to be greatly
+ applicable to geometry of higher dimensions.
+ Data science deals with highly multidimensional data all the time, so it
+ is quite possible that there are even more sophisticated techniques that
+ can be applied to higher dimensional geometry.
+ I'd be excited to keep my eyes out for more of them.
+\end_layout
+
+\end_body
+\end_document
